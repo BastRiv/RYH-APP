@@ -1,0 +1,47 @@
+
+
+<ion-content class="ion-padding">
+  <ion-header [translucent]="true">
+    <ion-col size="2">
+      <ion-icon name="caret-back-outline"style="margin-top: 7%;" (click)="goBack()"></ion-icon>
+    </ion-col>
+  </ion-header>
+  <div class="cards">
+
+    <ion-card color="light">
+      <img alt="Silhouette of mountains" src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+      <ion-card-header>
+        <ion-card-title>Departamento 1</ion-card-title>
+        <ion-card-subtitle>Av. test 123</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+      </ion-card-content>
+
+      <ion-list>
+        <ion-item (click)="openModal()" color="light">
+          <ion-label>Fotos</ion-label>
+        </ion-item>
+  
+        <ion-item color="light">
+          <ion-label>N° de habitaciones</ion-label>
+        </ion-item>
+  
+        <ion-item color="light">
+          <ion-label>Cocina</ion-label>
+        </ion-item>
+  
+        <ion-item lines="none" color="light">
+          <ion-label>Baños</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-row>
+        <ion-button fill="clear">Reservar</ion-button>
+      </ion-row>  
+
+
+    </ion-card>
+  </div>
+</ion-content>

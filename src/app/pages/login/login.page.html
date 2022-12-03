@@ -1,0 +1,50 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <div class="center">
+    <ion-grid>
+      <ion-row >
+        <ion-col size="12">
+         
+            <ion-input type="email"  required [(ngModel)]="userData.username" placeholder="Ingresa tu correo" ></ion-input>
+   
+        </ion-col>
+        <ion-col size="12">
+        
+            <ion-input type="password"  required [(ngModel)]="userData.password"  placeholder="Ingresa tu contraseña"></ion-input>
+    
+        </ion-col>
+      
+        <ion-col size="12" >
+          <ion-button mode="ios" class="btnlogin" (click)="login()">Iniciar sesión </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   </div>
+
+  <div class="container">
+    <ion-row>
+     <ion-col size="5.5">
+      <ion-button mode="ios" color="dark" fill ="clear "size="default"  class="btn2" (click)="goNewAccount()"> Crear cuenta</ion-button>
+    </ion-col>
+  
+    <ion-col size="5.5">
+      <ion-button mode="ios" color="dark"fill="clear" size="default" class="btn2" (click)="goPass()"> Recuperar contraseña </ion-button>
+    </ion-col>
+
+  </ion-row>
+  </div> 
+
+</ion-content>

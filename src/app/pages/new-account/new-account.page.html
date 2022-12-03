@@ -1,0 +1,47 @@
+
+
+<ion-content class="ion-padding">
+  <ion-header [translucent]="true">
+    <ion-col size="2">
+      <ion-icon name="caret-back-outline"style="margin-top: 7%;" (click)="goBack()"></ion-icon>
+    </ion-col>
+  </ion-header>
+
+
+
+  <h1>Crear cuenta</h1>
+
+
+  <ion-grid class="bg">
+
+    <ion-row >
+      <ion-col size="6">
+        <ion-input type="text" required [(ngModel)]="userData.first_name"  placeholder="Nombre" ></ion-input>
+    </ion-col>
+
+    <ion-col size="6">  
+      <ion-input type="text" required [(ngModel)]="userData.last_name"  placeholder="Apellido" ></ion-input>
+    </ion-col>
+
+      <ion-col size="12">
+          <ion-input type="email" required [(ngModel)]="userData.email"  placeholder="E-mail" ></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+          <ion-input type="password" required [(ngModel)]="userData.password"  placeholder="Contraseña"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input type="password"  placeholder="Reingresa tu contraseña"></ion-input>
+      </ion-col>
+
+      <ion-col size="12" >
+        <ion-button mode="ios" class="btnlogin" (click)="registerNormal()">Registrarme </ion-button>
+      </ion-col>
+
+
+
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
