@@ -40,6 +40,19 @@ createUser(data:any) {
 
 }
 
+getData(token:any){
+  return new Promise((resolve,reject)=>{
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'Authorization': 'Token ' + token});
+
+    this.http.get(apiUrl + "profile/", {headers:headers})
+    .subscribe(res =>{
+      resolve(res);
+    }, (err)=>{
+      reject(err);
+    });
+  });
+}
+
 }
 
 

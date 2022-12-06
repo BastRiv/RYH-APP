@@ -19,11 +19,17 @@ export class LoginPage implements OnInit {
   constructor(private navCtrl: NavController,
     private authService: AuthorizationServiceService,
     private toast: ToastController,)
-         {  
+        {  
+          
       
     }
 
   ngOnInit() {
+    const token = localStorage.getItem('userData'); 
+    if(token != null) {
+      this.navCtrl.navigateForward('load-page')
+      console.log('OK',token)
+    }
   }
 
 

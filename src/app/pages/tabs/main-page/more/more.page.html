@@ -8,19 +8,19 @@
   </ion-header>
   <div class="cards">
 
-    <ion-card color="light">
-      <img alt="Silhouette of mountains" src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+    <ion-card color="light" *ngIf="propertyInfo">
+      <img swiperSlide src="{{propertyInfo.image_front_page}}" />
       <ion-card-header>
-        <ion-card-title>Departamento 1</ion-card-title>
-        <ion-card-subtitle>Av. test 123</ion-card-subtitle>
+        <ion-card-title>{{propertyInfo.name}}</ion-card-title>
+        <ion-card-subtitle>{{propertyInfo.address}}</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+        {{propertyInfo.description}}
       </ion-card-content>
 
       <ion-list>
-        <ion-item (click)="openModal()" color="light">
+        <ion-item (click)="openModal()" color="light" >
           <ion-label>Fotos</ion-label>
         </ion-item>
   
@@ -38,7 +38,7 @@
       </ion-list>
 
       <ion-row>
-        <ion-button fill="clear">Reservar</ion-button>
+        <ion-button fill="clear" (click)="makeReservation()">Reservar</ion-button>
       </ion-row>  
 
 

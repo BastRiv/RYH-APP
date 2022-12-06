@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>bookings</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
+<ion-content class="ion-padding">
+  <div class="cards">
+  <div *ngFor="let item of bookings">
+    <ion-card color="light"  >
+      <img swiperSlide src="{{item.image_front_page}}" />
+      <ion-card-header>
+        <ion-card-title>{{item.name}}</ion-card-title>
+        <ion-card-subtitle>{{item.address}}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+       {{item.description}}
+      </ion-card-content>
+
+      <ion-row >
+        <ion-button fill="clear">Volver a Reservar </ion-button>
+        <ion-button fill="clear" (click)="goMoreInfo(item.pk)">Ver Mas</ion-button>
+      </ion-row>      
+    </ion-card>
+  </div>
+
+  </div>
 </ion-content>

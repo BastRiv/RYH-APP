@@ -6,18 +6,18 @@
 
 <ion-content>
 
-  <swiper  [config]="config">
+  <swiper  [config]="config" *ngIf="propertyInfo">
     <ng-template swiperSlide>
-      <img swiperSlide src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+      <img swiperSlide src="{{propertyInfo.image_1}}" />
     </ng-template>
     <ng-template swiperSlide>
-      <img swiperSlide src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+       <img swiperSlide src="{{propertyInfo.image_2}}" />
     </ng-template>
     <ng-template swiperSlide>
-      <img swiperSlide src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+       <img swiperSlide src="{{propertyInfo.image_3}}" />
     </ng-template>
     <ng-template swiperSlide>
-      <img swiperSlide src="https://imgclasificados2.emol.com/Proyectos/imagenes/proyecto/PR_FOTO_5027_Exterior%201%20Valle%20de%20la%20Luna%20II.jpg" />
+       <img swiperSlide src="{{propertyInfo.image_4}}" />
     </ng-template>
   </swiper>
 

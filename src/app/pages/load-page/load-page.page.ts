@@ -11,9 +11,12 @@ export class LoadPagePage implements OnInit {
 
 
   progress = 0;
-  profile:any;
+  profile_data:any;
+  token:any;
 
-  constructor(private navCtrl: NavController,) { 
+
+  constructor(private navCtrl: NavController,
+              private authService: AuthorizationServiceService) { 
     setInterval(()=>{
       this.progress += .02;
     }, 100)
@@ -21,9 +24,23 @@ export class LoadPagePage implements OnInit {
       this.navCtrl.navigateForward('tabs/main-page')
     }, 6000)
     
+      this.token = JSON.parse(localStorage.getItem('userData')!).token; 
   }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData() { 
+    this.authService.getData(this.token)
+    .then( data => { 
+      this.profile_data = data;
+      console.log(this.profile_data); 
+      localStorage.setItem('profile_data', JSON.stringify(this.profile_data));
+     } )
+     .catch( error => {
+      console.log(error);
+     } )
   }
 
 }
