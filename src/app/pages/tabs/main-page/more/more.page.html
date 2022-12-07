@@ -13,35 +13,38 @@
       <ion-card-header>
         <ion-card-title>{{propertyInfo.name}}</ion-card-title>
         <ion-card-subtitle>{{propertyInfo.address}}</ion-card-subtitle>
+        <ion-text> {{propertyInfo.price | currency :'':'symbol-narrow': '3.0'}} CLP noche</ion-text>
       </ion-card-header>
     
       <ion-card-content>
         {{propertyInfo.description}}
       </ion-card-content>
 
-      <ion-list>
+      <ion-list >
         <ion-item (click)="openModal()" color="light" >
           <ion-label>Fotos</ion-label>
         </ion-item>
   
-        <ion-item color="light">
-          <ion-label>N° de habitaciones</ion-label>
+        <ion-item *ngFor="let item of serviceInfo" color="light">
+          <ion-label>{{item.service.name}}</ion-label>
+          <ion-text>{{item.quantity}}</ion-text>
         </ion-item>
   
         <ion-item color="light">
-          <ion-label>Cocina</ion-label>
+          <ion-label>Fecha llegada</ion-label>
+          <ion-input required [(ngModel)]="startDate" type="date" class="input" ></ion-input>
         </ion-item>
-  
-        <ion-item lines="none" color="light">
-          <ion-label>Baños</ion-label>
+
+        <ion-item color="light">
+          <ion-label>Fecha salida</ion-label>
+          <ion-input required [(ngModel)]="endDate" type="date"></ion-input>
         </ion-item>
       </ion-list>
-
       <ion-row>
         <ion-button fill="clear" (click)="makeReservation()">Reservar</ion-button>
       </ion-row>  
 
-
     </ion-card>
   </div>
+
 </ion-content>

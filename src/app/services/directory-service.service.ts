@@ -56,7 +56,7 @@ export class DirectoryServiceService {
   getOneServicesProperty(token:any, pk:any){
     return new Promise((resolve, reject)=>{
       let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Token ' + token});
-      this.http.get(apiUrl + 'property/service/?property='+ pk,  {headers: headers})
+      this.http.get(apiUrl + 'property/service/read/?property='+ pk,  {headers: headers})
       .subscribe(res=>{
         resolve(res);
       },(err)=>{
@@ -76,6 +76,18 @@ export class DirectoryServiceService {
         });
       });
     }
+
+    MakeTransaction(token:any, data:any){
+      return new Promise ((resolve,reject)=>{
+          let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Token ' + token});
+          this.http.post(apiUrl+'property/reservation/transaction/', data, {headers:headers})
+          .subscribe(res=>{
+            resolve(res);
+          },(err)=>{
+            reject(err);
+          });
+        });
+      }
 
 
 

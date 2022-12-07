@@ -9,6 +9,7 @@
       <ion-card-header>
         <ion-card-title>{{item.name}}</ion-card-title>
         <ion-card-subtitle>{{item.address}}</ion-card-subtitle>
+        <ion-text> {{item.price | currency :'':'symbol-narrow': '3.0'}} CLP noche</ion-text>
       </ion-card-header>
     
       <ion-card-content>
@@ -16,7 +17,6 @@
       </ion-card-content>
 
       <ion-row >
-        <ion-button fill="clear">Reservar</ion-button>
         <ion-button fill="clear" (click)="goMoreInfo(item.pk)">Ver Mas</ion-button>
       </ion-row>      
     </ion-card>

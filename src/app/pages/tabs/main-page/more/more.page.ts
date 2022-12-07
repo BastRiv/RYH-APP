@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { DirectoryServiceService } from 'src/app/services/directory-service.service';
 import { ImgPage } from './img/img.page';
+import { TransactionPage } from './transaction/transaction.page';
 
 @Component({
   selector: 'app-more',
@@ -16,6 +17,9 @@ propertyid:any;
 propertyInfo:any;
 serviceInfo:any;
 userpk:any; 
+startDate:any;
+endDate:any;
+reservationInfo:any;
 
   constructor( private navCtrl: NavController,
                private modalCtrl: ModalController,
@@ -32,6 +36,7 @@ userpk:any;
                }
 
   ngOnInit() {
+  
     this.getPropertyInfo();
     this.getServicesProperty();
   }
@@ -45,7 +50,7 @@ userpk:any;
     this.directoryService.getPropertyInfo(this.token,this.propertyid)
     .then(data=>{
       this.propertyInfo = data;
-      console.log('producto', this.propertyInfo)
+      console.log('Property', this.propertyInfo)
     })
     .catch(error=>{
       console.log(error);
@@ -65,17 +70,44 @@ userpk:any;
    }
 
    makeReservation() {  
+    let x = Math.floor(Math.random()*1000000);
     let dataRe = {
-      code: 1122,
+      code: x,
       property: this.propertyid,
-      user:this.userpk
+      user:this.userpk,
+      start_date:this.startDate,
+      end_date:this.endDate,
     }
     this.directoryService.MakeReservation(this.token, dataRe)
     .then( data => { 
       console.log(data);
+      this.reservationInfo = data; 
+      this.makeTransaction(this.propertyInfo, this.reservationInfo)
+      this.modalTransaction();
+      console.log(dataRe)
      } )
      .catch( error => { 
       console.log(error); 
+      console.log(dataRe)
+      } )
+   }
+
+   makeTransaction(propertyInfo:any, reservationInfo:any) {  
+    let total = propertyInfo.price * 0.20 ;
+    let dataTr = {
+      reservation: reservationInfo.pk,
+      total: total,
+      status: 0,
+      type_transaction: 0,
+    }
+    this.directoryService.MakeTransaction(this.token, dataTr)
+    .then( data => { 
+      console.log(data);
+      console.log(dataTr)
+     } )
+     .catch( error => { 
+      console.log(error); 
+      console.log(dataTr)
       } )
    }
 
@@ -86,8 +118,16 @@ async openModal() {
     
   } ); 
   await modal.present();
+  
 }
 
+async modalTransaction() { 
+  const modal = await this.modalCtrl.create( { 
+    component: TransactionPage,
+    
+  } ); 
+  await modal.present();
+}
 
 
 }

@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'img',
     loadChildren: () => import('./img/img.module').then( m => m.ImgPageModule)
   },
+  {
+    path: 'transaction',
+    loadChildren: () => import('./transaction/transaction.module').then( m => m.TransactionPageModule)
+  },
 ];
 
 @NgModule({
