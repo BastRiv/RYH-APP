@@ -89,7 +89,34 @@ export class DirectoryServiceService {
         });
       }
 
+      addTransfer(token:any, data:any){
+        return new Promise ((resolve,reject)=>{
+            let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Token ' + token});
+            this.http.post(apiUrl+'property/reservation/service/transfer/', data, {headers:headers})
+            .subscribe(res=>{
+              resolve(res);
+            },(err)=>{
+              reject(err);
+            });
+          });
+        }
+
+        addTurism(token:any, data:any){
+          return new Promise ((resolve,reject)=>{
+              let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Token ' + token});
+              this.http.post(apiUrl+'property/reservation/service/tour/', data, {headers:headers})
+              .subscribe(res=>{
+                resolve(res);
+              },(err)=>{
+                reject(err);
+              });
+            });
+          }
+  
+
 
 
 
 }
+
+

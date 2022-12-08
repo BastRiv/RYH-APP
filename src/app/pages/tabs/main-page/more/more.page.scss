@@ -48,3 +48,13 @@ ion-icon{
     zoom: 1.8;
     color:dark;
   }
+
+  ion-checkbox {
+    --size: 20px;
+    --background-checked: #2A8C4A;
+  }
+  
+  ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: 2px solid #2A8C4A;
+  }

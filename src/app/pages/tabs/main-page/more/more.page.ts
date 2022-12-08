@@ -20,6 +20,15 @@ userpk:any;
 startDate:any;
 endDate:any;
 reservationInfo:any;
+checkbox = false;
+type_transfer = 0;
+complete:any;
+ida:any;
+vuelta:any;
+buttonReservation = false; 
+buttonIda:any;
+buttonVuelta:any;
+turismo:any;
 
   constructor( private navCtrl: NavController,
                private modalCtrl: ModalController,
@@ -78,18 +87,36 @@ reservationInfo:any;
       start_date:this.startDate,
       end_date:this.endDate,
     }
+
+
     this.directoryService.MakeReservation(this.token, dataRe)
     .then( data => { 
       console.log(data);
       this.reservationInfo = data; 
       this.makeTransaction(this.propertyInfo, this.reservationInfo)
+      this.addTransferService(this.reservationInfo.pk);
+      this.addTurismService(this.reservationInfo.pk)
       this.modalTransaction();
-      console.log(dataRe)
      } )
      .catch( error => { 
       console.log(error); 
       console.log(dataRe)
       } )
+   }
+
+   selectDateArrival($event:any){ 
+    console.log($event)
+    if ( $event.value != ''){
+      this.buttonIda = true;
+    }
+   }
+
+   selectDateLeave($event:any){ 
+    console.log($event)
+    if( this.buttonIda == true ){  
+      this.buttonReservation = true;
+
+    }
    }
 
    makeTransaction(propertyInfo:any, reservationInfo:any) {  
@@ -127,6 +154,77 @@ async modalTransaction() {
     
   } ); 
   await modal.present();
+}
+
+completeTransport($event:any){
+  if ( $event.detail.checked == true ) { 
+    this.type_transfer = 3;
+    console.log(this.type_transfer)
+    this.ida = true; 
+    this.vuelta = true; 
+  }
+  else if ( $event.detail.checked == false ) {
+    this.type_transfer = 99;
+    console.log(this.type_transfer)
+  }
+
+}
+
+idaTransport($event:any){
+  if ( $event.detail.checked == true && this.type_transfer != 3 )  { 
+    this.type_transfer = 1;
+    console.log(this.type_transfer)
+  }
+
+}
+
+vueltaTransport($event:any){
+  if ( $event.detail.checked == true && this.type_transfer != 3 )  { 
+    this.type_transfer = 2;
+    console.log(this.type_transfer)
+  }
+  
+
+}
+
+
+addTransferService(reservationInfo:any){ 
+  if(this.type_transfer != 0){
+    let data = {
+      reservation: reservationInfo,
+      type_transfer: this.type_transfer,
+    }
+    this.directoryService.addTransfer(this.token, data )
+    .then( data =>{
+      console.log(data)
+    } )
+    .catch( error =>{
+      console.log(error)
+    } )
+  }
+
+}
+
+addTurismService(reservationInfo:any) {
+  if(this.turismo == true) { 
+    let data = { 
+      reservation: reservationInfo
+    }
+    this.directoryService.addTurism(this.token, reservationInfo )
+    .then( data => { 
+      console.log(data);
+    } )
+    .catch( error => {
+      console.log(error);
+    } )
+  }
+
+}
+
+turismoService($event:any){
+  if ($event.detail.checked == true ){ 
+    this.turismo = true; 
+  }
 }
 
 
