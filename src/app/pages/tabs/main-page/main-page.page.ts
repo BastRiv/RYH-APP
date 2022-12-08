@@ -19,7 +19,6 @@ properties:any;
                private router: Router ) { 
 
                 this.token = JSON.parse(localStorage.getItem('userData')!).token;
-                console.log(this.token)
             
                }
 
@@ -39,10 +38,9 @@ properties:any;
   }
 
 
-  goMoreInfo(propertyid:any){
-    this.router.navigate(['/main-page/more'], { queryParams: { propertyId: propertyid  } });
-    localStorage.setItem('propertyid', propertyid)
-    console.log('ID', propertyid)
+  goMoreInfo(propertyInfo:any){
+    this.router.navigate(['/main-page/more'], { queryParams: { propertyId: propertyInfo.pk  } });
+    localStorage.setItem('propertyid', JSON.stringify(propertyInfo.pk));
   }
 
 }

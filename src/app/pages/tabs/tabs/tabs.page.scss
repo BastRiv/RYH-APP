@@ -7,10 +7,15 @@ ion-tab-button{
 }
 
 ion-title {
+	img { 
+		width: 80px;
+		height: 40px;
+		margin-left: 45%;
+	}
+}
+
+ion-toolbar { 
 	ion-icon { 
-		zoom: 2.0;
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
+		zoom: 1.8;
 	}
 }

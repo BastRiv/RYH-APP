@@ -42,6 +42,7 @@ turismo:any;
 
                 this.token = JSON.parse(localStorage.getItem('userData')!).token;
                 this.userpk = JSON.parse(localStorage.getItem('profile_data')!).pk;
+                this.propertyInfo = JSON.parse(localStorage.getItem('propertyInfo')!);
                }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ turismo:any;
   }
 
   goBack() { 
-    this.navCtrl.navigateBack('/tabs/main-page')
+    this.navCtrl.back();
   }
 
 
@@ -78,6 +79,22 @@ turismo:any;
       } )
    }
 
+   updateProperty(){
+    let data={
+      status:1,
+      name: this.propertyInfo.name,
+      description:this.propertyInfo.description,
+      address:this.propertyInfo.address,
+    }
+    this.directoryService.updateProperty(this.token, data, this.propertyid )
+    .then( data => { 
+      console.log('Update',data); 
+    })
+    .catch( error=>{
+      console.log(error);
+    } )
+   }
+
    makeReservation() {  
     let x = Math.floor(Math.random()*1000000);
     let dataRe = {
@@ -96,6 +113,7 @@ turismo:any;
       this.makeTransaction(this.propertyInfo, this.reservationInfo)
       this.addTransferService(this.reservationInfo.pk);
       this.addTurismService(this.reservationInfo.pk)
+      this.updateProperty();
       this.modalTransaction();
      } )
      .catch( error => { 
@@ -105,22 +123,26 @@ turismo:any;
    }
 
    selectDateArrival($event:any){ 
-    console.log($event)
     if ( $event.value != ''){
       this.buttonIda = true;
     }
    }
 
    selectDateLeave($event:any){ 
-    console.log($event)
     if( this.buttonIda == true ){  
       this.buttonReservation = true;
 
     }
    }
 
-   makeTransaction(propertyInfo:any, reservationInfo:any) {  
-    let total = propertyInfo.price * 0.20 ;
+   makeTransaction(propertyInfo:any, reservationInfo:any) { 
+
+    let start_date = new Date(this.startDate).getTime();
+    let end_date    = new Date(this.endDate).getTime(); 
+    let diff = end_date - start_date;
+    let price = diff/(1000*60*60*24) 
+  
+    let total = (propertyInfo.price * price) * 0.20 ;
     let dataTr = {
       reservation: reservationInfo.pk,
       total: total,
@@ -129,6 +151,7 @@ turismo:any;
     }
     this.directoryService.MakeTransaction(this.token, dataTr)
     .then( data => { 
+      localStorage.setItem('total', JSON.stringify(total))
       console.log(data);
       console.log(dataTr)
      } )
@@ -226,6 +249,8 @@ turismoService($event:any){
     this.turismo = true; 
   }
 }
+
+
 
 
 }

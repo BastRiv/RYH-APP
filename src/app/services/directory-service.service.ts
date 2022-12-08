@@ -15,10 +15,37 @@ export class DirectoryServiceService {
 
 
 
+  
+  
+  updateProperty(token:any, data:any, pk:any) {
+    return new Promise((resolve, reject)=>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json','Authorization':'Token '+ token});
+    this.http.put(apiUrl+'property/' + pk , data, {headers: headers})
+    .subscribe(res => {
+        resolve(res);
+    }, (err) => {
+        reject(err);
+      });
+    });
+  }
+  
+  
   getProperties(token:any) {
     return new Promise((resolve, reject)=>{
     let headers = new HttpHeaders({'Content-Type': 'application/json','Authorization':'Token '+ token});
     this.http.get(apiUrl+'property/',{headers: headers})
+    .subscribe(res => {
+        resolve(res);
+    }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
+  getOneProperty(token:any, pk:any) {
+    return new Promise((resolve, reject)=>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json','Authorization':'Token '+ token});
+    this.http.get(apiUrl+'property/' + pk ,{headers: headers})
     .subscribe(res => {
         resolve(res);
     }, (err) => {

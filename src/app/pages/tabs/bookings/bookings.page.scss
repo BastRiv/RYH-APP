@@ -5,14 +5,20 @@
     }
     margin-top: 15%;
     ion-card-header { 
-        height: 70px;
+        height: 85px;
         ion-card-title { 
             font-size: medium;
+        }
+        ion-text {
+            font-size: small;
+            font-style: italic;
+            font-weight: 500;
         }
         ion-card-subtitle { 
             font-size: small;
         }
     }
+
 
     ion-card-content {
         font-size: smaller;
@@ -25,7 +31,14 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 35%;
+        width: auto;
+    }
+
+    h2{
+        text-align: center;
+        font-size:large;
+        font-style: italic;
+        font-weight: bold;
     }
     
 }

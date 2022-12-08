@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ModalController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-transaction',
@@ -8,13 +9,24 @@ import { ModalController } from '@ionic/angular';
 })
 export class TransactionPage implements OnInit {
 
-  constructor( private modalCtrl: ModalController, ) { }
+total:any;
+  constructor( private modalCtrl: ModalController,
+               private navCtrl:NavController,
+               private router: Router ) {
+
+            this.total = localStorage.getItem('total');
+   }
 
   ngOnInit() {
   }
 
   dismiss(){ 
     this.modalCtrl.dismiss();
+    this.router.navigateByUrl('tabs/main-page')
+    .then(()=>{
+      window.location.reload();
+    });
+
   }
 
 }

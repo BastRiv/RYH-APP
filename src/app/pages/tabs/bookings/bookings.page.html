@@ -2,12 +2,14 @@
 
 <ion-content class="ion-padding">
   <div class="cards">
-  <div *ngFor="let item of bookings">
-    <ion-card color="light"  >
+    <h2 >Reserva actual</h2>
+  <div *ngFor="let item of propertiesInfo">
+    <ion-card   color="light"  *ngIf="item.status == 1 || item.status == 2">
       <img swiperSlide src="{{item.image_front_page}}" />
       <ion-card-header>
         <ion-card-title>{{item.name}}</ion-card-title>
         <ion-card-subtitle>{{item.address}}</ion-card-subtitle>
+        <ion-text> {{item.price | currency :'':'symbol-narrow': '3.0'}} CLP noche</ion-text>
       </ion-card-header>
     
       <ion-card-content>
@@ -15,8 +17,28 @@
       </ion-card-content>
 
       <ion-row >
-        <ion-button fill="clear">Volver a Reservar </ion-button>
-        <ion-button fill="clear" (click)="goMoreInfo(item.pk)">Ver Mas</ion-button>
+        <ion-button fill="clear" (click)="cancel(item)">Cancelar reserva</ion-button>
+      </ion-row>      
+    </ion-card>
+  </div>
+
+
+  <h2 > Historial de reservas</h2>
+  <div *ngFor="let item of propertiesInfo ">
+    <ion-card   color="light"  *ngIf="item.status == 0">
+      <img swiperSlide src="{{item.image_front_page}}" />
+      <ion-card-header>
+        <ion-card-title>{{item.name}}</ion-card-title>
+        <ion-card-subtitle>{{item.address}}</ion-card-subtitle>
+        <ion-text> {{item.price | currency :'':'symbol-narrow': '3.0'}} CLP noche</ion-text>
+      </ion-card-header>
+    
+      <ion-card-content>
+       {{item.description}}
+      </ion-card-content>
+
+      <ion-row >
+        <ion-button fill="clear" (click)="goMoreInfo(item)">Ver Mas</ion-button>
       </ion-row>      
     </ion-card>
   </div>
