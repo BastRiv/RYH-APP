@@ -1,22 +1,18 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DirectoryServiceService } from 'src/app/services/directory-service.service';
-
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination, SwiperOptions } from 'swiper';
 
 
-
 SwiperCore.use([Autoplay, Pagination, EffectCoverflow,]);
-
 @Component({
-  selector: 'app-img',
-  templateUrl: './img.page.html',
-  styleUrls: ['./img.page.scss'],
+  selector: 'app-slides',
+  templateUrl: './slides.page.html',
+  styleUrls: ['./slides.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
+export class SlidesPage implements OnInit {
 
-export class ImgPage implements OnInit {
-  
   propertyid:any;
   propertyInfo:any;
   token:any;

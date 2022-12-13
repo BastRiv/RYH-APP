@@ -8,13 +8,14 @@ const routes: Routes = [
     path: '',
     component: MorePage
   },
-  {
-    path: 'img',
-    loadChildren: () => import('./img/img.module').then( m => m.ImgPageModule)
-  },
+
   {
     path: 'transaction',
     loadChildren: () => import('./transaction/transaction.module').then( m => m.TransactionPageModule)
+  },
+  {
+    path: 'slides',
+    loadChildren: () => import('./slides/slides.module').then( m => m.SlidesPageModule)
   },
 ];
 

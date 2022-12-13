@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { DirectoryServiceService } from 'src/app/services/directory-service.service';
-import { ImgPage } from './img/img.page';
+import { SlidesPage } from './slides/slides.page';
 import { TransactionPage } from './transaction/transaction.page';
 
 @Component({
@@ -164,7 +164,7 @@ turismo:any;
 
 async openModal() { 
   const modal = await this.modalCtrl.create( { 
-    component: ImgPage,
+    component: SlidesPage,
     
   } ); 
   await modal.present();

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://0.0.0.0:8111/api/v1/'
+  url: 'https://bastian.wearekzteam.com/api/v1/',
 };
 
 /*

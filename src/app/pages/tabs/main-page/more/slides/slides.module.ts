@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SwiperModule } from 'swiper/angular';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ImgPageRoutingModule } from './img-routing.module';
+import { SlidesPageRoutingModule } from './slides-routing.module';
 
-import { ImgPage } from './img.page';
+import { SlidesPage } from './slides.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ImgPageRoutingModule,
+    SlidesPageRoutingModule,
     SwiperModule
   ],
-  declarations: [ImgPage]
+  declarations: [SlidesPage]
 })
-export class ImgPageModule {}
+export class SlidesPageModule {}
